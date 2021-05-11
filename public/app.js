@@ -11,16 +11,19 @@
   //  type: DataTypes.STRING
   
   
-const endpoint = 'C:\Users\jared\Documents\GitHub\Sequelize\routes\apiRoutes.js';
-const name = [];
+async function hall (){
+  const hallfetch = await fetch ('/api/dining');
+  const hallInfo = await hallfetch.json();
+  const arrayHall = hallInfo.data;
+  const gather = document.querySelector('.solution');
 
-fetch(endpoint)
-    .then(blob => blob.json())
-    .then(data => hall.push(...data))
+  arrayHall.forEach ((element) => {
+    const makeRows = document.createElement('tr');
+    makeRows.innerHTML = `
+    <td>${element.hall_name}</td>
+    <td>${element.hall_address}</td>
+    `
+  });
+  window.onload = hall();
+}
 
-    function findHalls(wordToMatch, zips){
-      return zips.filter(loc => {
-          const regex = new RegExp(wordToMatch, 'gi');
-          return loc.zip.match(regex)
-      });
-  }
